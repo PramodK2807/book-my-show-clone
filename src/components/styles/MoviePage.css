@@ -1,0 +1,14 @@
+
+
+@media screen and (max-width:768px) {
+    .moviepage{
+        margin: 10px auto !important;
+        width: 250px !important;
+        height: 350px !important;
+    }
+    .moviepage img{
+        height: 100% !important;
+        width: 100% !important;
+    }
+    
+}
