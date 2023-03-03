@@ -7,6 +7,7 @@ import './styles/MoviePage.css'
 import { useWishlist } from "../context/WishList"
 import { toast } from "react-toastify"
 import { useAuth } from "../context/Auth"
+import Banner from "../pages/Banner"
 
 const MoviePage = () => {
     let [movies, setMovies] = useState([])
@@ -29,11 +30,11 @@ const MoviePage = () => {
         }
     }
 
-    console.log(wishlist)
+    // console.log(wishlist)
 
   return (
     <Layout>
-        <div className="container my-3 ">
+        <div className="container my-5 ">
             <div className="row d-flex align-items-center">
 
 
@@ -66,6 +67,8 @@ const MoviePage = () => {
                 }
             </div>
         </div>
+
+        <Banner/>
     </Layout>
   )
 }

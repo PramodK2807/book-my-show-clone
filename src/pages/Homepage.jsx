@@ -6,6 +6,8 @@ import Layout from "../components/Layout/Layout";
 import Loader from "../components/Loader";
 import '../components/styles/MovieShow.css'
 import { useAuth } from "../context/Auth";
+import Banner from "./Banner";
+import CurrentEvents from "./CurrentEvents";
 
 const Homepage = () => {
   const [movies, setMovies] = useState([]);
@@ -14,7 +16,6 @@ const Homepage = () => {
   const getMovies = async () => {
     let data = await fetch(`${process.env.REACT_APP_API}/movies`);
     let result = await data.json();
-    // console.log(result.movies)
     setMovies(result.movies);
   };
 
@@ -35,6 +36,7 @@ const Homepage = () => {
         box.scrollLeft = box.scrollLeft + width;
     }
 
+    
 
   // console.log(movies);
   return (
@@ -69,73 +71,34 @@ const Homepage = () => {
                           movies.length > 0 ?
 
                             movies.splice(0,10).map((m) => (
-                                <Link className="card" to={`/movie/detail/${m._id}`}>
+                              
+                                <Link className="card" to={`/movie/detail/${m._id}`} key={m._id}>
                                     <div className="img">
                                         <img src={m.img} alt="f" />
                                     </div>
                                     <p className="title">{m.title}</p>
-                                    {/* <p className="category text-dark text-bold">{m.category}</p> */}
-
+                                    <p className="category text-dark text-bold">{m.category.name}</p>
                                 </Link>
                             ))
                             :
                             <Loader/>
                         }
-                            
-                            {/* <div className="card">
-                                <div className="img">
-                                    <img src="https://m.media-amazon.com/images/M/MV5BNDExMTBlZTYtZWMzYi00NmEwLWEzZGYtOTA1MDhmNTc0ODZkXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg" alt="f" />
-                                </div>
-                                <p className="title">Hera Pheri</p>
-                                <p className="category">Comedy</p>
-                                <p className="year">2001</p>
-
-                            </div>
-                            <div className="card">
-                                <div className="img">
-                                    <img src="https://m.media-amazon.com/images/M/MV5BNDExMTBlZTYtZWMzYi00NmEwLWEzZGYtOTA1MDhmNTc0ODZkXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg" alt="f" />
-                                </div>
-                                <p className="title">Hera Pheri</p>
-                                <p className="category">Comedy</p>
-                                <p className="year">2001</p>
-
-                            </div>
-                            <div className="card">
-                                <div className="img">
-                                    <img src="https://m.media-amazon.com/images/M/MV5BNDExMTBlZTYtZWMzYi00NmEwLWEzZGYtOTA1MDhmNTc0ODZkXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg" alt="f" />
-                                </div>
-                                <p className="title">Hera Pheri</p>
-                                <p className="category">Comedy</p>
-                                <p className="year">2001</p>
-
-                            </div>
-                            <div className="card">
-                                <div className="img">
-                                    <img src="https://m.media-amazon.com/images/M/MV5BNDExMTBlZTYtZWMzYi00NmEwLWEzZGYtOTA1MDhmNTc0ODZkXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg" alt="f" />
-                                </div>
-                                <p className="title">Hera Pheri</p>
-                                <p className="category">Comedy</p>
-                                <p className="year">2001</p>
-
-                            </div> */}
-
 
                        </div>
 
                        <div onClick={rightS} className="icon right">
                         <AiOutlineDoubleRight/>
                     </div>
-
-
-                   
                 </div>
             </div>
-
-
-
         </div>
 
-     
+     <Banner/>
+
+     <CurrentEvents/>
+
+
+
     </Layout>
   );
 };

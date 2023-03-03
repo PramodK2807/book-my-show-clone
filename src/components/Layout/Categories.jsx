@@ -31,25 +31,31 @@ const Categories = () => {
 
 
 
-      <div className="container my-5">
-        <div className="row " style={{gap:'15px'}}>
+<div className="container my-5">
+        <div className="row mx-auto " style={{gap:'15px'}}>
         {
-                movies.length > 0 ? (
+               movies.length > 0 ?
                 
-                    movies.map((m) => (
-                        <NavLink  to={`/movie/detail/${m._id}`} className="card col-4 p-0 col-lg-3 ">
-                            <div className="img" style={{width:"100%"}}>
-                            <img style={{width:"100%"}}
+                   ( movies.map((m) => (
+                        <NavLink  to={`/movie/detail/${m._id}`}  className="card col-md-3 p-0 " style={{width:'22%'}}>
+                            <div className="img">
+                            <img
                                 src={m.img}
                                 alt={m.title}/>
                             </div>
                             <p style={{color:"black"}} className="title">{m.title}</p>
                             {/* <p style={{color:"black"}} className="category">{m.category.name}</p> */}
-                            {/* <p style={{color:"black"}} className="year">{m.year}</p> */}
+                            <p style={{color:"black"}} className="year">{m.year}</p>
                         </NavLink>
-                    ))
+                    )))
 
-                ) : (<Loader/>)
+                    :
+
+                    (
+                      <Loader/>
+                    )
+
+                
               }
         </div>
         
