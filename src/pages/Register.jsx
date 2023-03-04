@@ -13,9 +13,15 @@ const Register = () => {
 
   const signup = async (e) => {
     e.preventDefault();
-    if (password !== cpassword) {
+
+    if (password !== cpassword || password.length < 8) {
       setError(true);
-      toast.error("Password doesn't match");
+      toast.error("Password doesn't match or too short");
+      return false;
+    }
+    if(mobile.length<10){
+      setError(true);
+      toast.error("Enter Valid Mobile");
       return false;
     }
     
@@ -26,6 +32,8 @@ const Register = () => {
             toast.error("Please enter all details");
             return false;
           }
+
+
       let response = await fetch(`${process.env.REACT_APP_API}/register`, {
         method: "POST",
         body: JSON.stringify({ name, email, password, cpassword, mobile }),
@@ -44,8 +52,6 @@ const Register = () => {
     }
 
   };
-
-  // console.log(process.env.REACT_APP_API);
 
   return (
     <Layout>
@@ -72,9 +78,9 @@ const Register = () => {
               value={name}
             />
           </div>
-          {/* {
+          {
               error && !name && <div style={{marginTop:'2px', paddingTop:'0', color:"red"}}>Please Enter Name</div>
-            } */}
+            }
           <div className="form-field d-flex align-items-center">
             <span className="far fa-user"></span>
             <input
@@ -86,9 +92,9 @@ const Register = () => {
               value={email}
             />
           </div>
-          {/* {
+          {
               error && !email && <div style={{marginTop:'2px', paddingTop:'0', color:"red"}}>Please Enter Email</div>
-            } */}
+            }
           <div className="form-field d-flex align-items-center">
             <span className="fas fa-key"></span>
             <input
@@ -100,9 +106,9 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {/* {
+          {
               error && !password && <div style={{marginTop:'2px', paddingTop:'0', color:"red"}}>Please Enter Password</div>
-            } */}
+            }
 
           <div className="form-field d-flex align-items-center">
             <span className="fas fa-key"></span>
@@ -127,6 +133,9 @@ const Register = () => {
               onChange={(e) => setMobile(e.target.value)}
             />
           </div>
+          {
+              error && !mobile && <div style={{marginTop:'2px', paddingTop:'0', color:"red"}}>Please Enter Valid Mobile</div>
+            }
           <button type="submit" className="btn mt-3" onClick={(e) => signup(e)}>
             Sign Up
           </button>

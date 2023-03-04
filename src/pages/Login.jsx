@@ -26,6 +26,11 @@ const Login = () => {
             toast.error("Please enter email and password");
             return false;
         }
+        if(password.length < 8){
+          setError(true);
+            toast.error("Password must be at least 8 characters");
+            return false;
+        }
 
         try {
             let response = await fetch(`${process.env.REACT_APP_API}/login`, {method: 'POST',
@@ -82,11 +87,11 @@ const Login = () => {
               value={email}
             />
           </div>
-          {/* {error && !email && (
+          {error && !email && (
             <div style={{ marginTop: "2px", paddingTop: "0", color: "red" }}>
               Please Enter Email
             </div>
-          )} */}
+          )}
           <div className="form-field d-flex align-items-center">
             <span className="fas fa-key"></span>
             <input
@@ -98,11 +103,11 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {/* {error && !password && (
+          {error && !password && (
             <div style={{ marginTop: "2px", paddingTop: "0", color: "red" }}>
               Please Enter Password
             </div>
-          )} */}
+          )}
           <button onClick={(e) => login(e)} type="submit" className="btn mt-3" >
             Login
           </button>

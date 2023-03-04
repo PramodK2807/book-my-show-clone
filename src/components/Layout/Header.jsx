@@ -20,6 +20,10 @@ const Header = () => {
     const navigate = useNavigate()
     // console.log(categories)
 
+    useEffect(() => {
+    },[auth])
+    
+
     const searchHandle = async(e) => {
       e.preventDefault()
       try {
@@ -36,17 +40,13 @@ const Header = () => {
 
     }
     
-    useEffect(() => {
-      // logout()
-    },[auth])
-    
+   
     
     const logout = () => {
       localStorage.removeItem('auth')
       setAuth({
         ...auth
       })
-      navigate('/login')
     }
         
 
@@ -151,21 +151,19 @@ const Header = () => {
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
 
                    <li >
-                      <NavLink className="dropdown-item text-dark"  to={`/dashboard/${auth?.user?.isAdmin === true ? `admin/${auth.user._id}` : 'user'}`}>
+                      <NavLink className="dropdown-item text-dark"   to={`/dashboard/${auth?.user?.isAdmin === true ? `admin/${auth.user._id}` : 'user'}`}>
                         Dashboard
                       </NavLink>
                     </li>
 
                     <li>
-                <NavLink onClick={(e) => logout(e)} className=" dropdown-item         text-dark">Logout <FiLogOut/>
+                <NavLink to='/' onClick={(e) => logout(e)} className=" dropdown-item  text-dark">Logout <FiLogOut/>
                 </NavLink>
                 </li>
 
                 </ul>
                 </li>
                     
-
-
                     </>
                     
                     ) : (

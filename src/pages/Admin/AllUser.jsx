@@ -12,18 +12,22 @@ const AllUser = () => {
         </div>
             <div className="col-md-8 mx-auto">
             <table class="table-secondary">
+                <tbody>
                 <tr>
                     <th>S.no.</th>
                     <th>S.no.</th>
                     <th>S.no.</th>
                     <th>S.no.</th>
                 </tr>
+
                 <tr>
                     <td>1</td>
                     <td>1</td>
                     <td>1</td>
                     <td>1</td>
                 </tr>
+                </tbody>
+                
             </table>
             </div>
       </div>
